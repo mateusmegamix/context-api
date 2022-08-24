@@ -1,30 +1,29 @@
 import { Text, View, FlatList, StatusBar, TouchableOpacity } from 'react-native';
 import { Produto } from '../../componentes/Produto';
-import { produtos } from './produtos';
-import { estilos } from './estilos';
-import { Feather } from 'react-native-vector-icons'
-import MaterialCommunityIcons from 'react-native-vector-icons/Feather';
-import { useContext } from 'react';
-import { TemaContext } from '../../contexts/TemaContext';
-import { AutenticacaoContext } from '../../contexts/AutenticacaoContext';
 import { ProdutosContext } from '../../contexts/ProdutosContext';
-
+import { AutenticacaoContext } from '../../contexts/AutenticacaoContext';
+import { TemaContext } from '../../contexts/TemaContext';
+import { estilos } from './estilos';
+import { useContext } from 'react';
+import { Feather } from 'react-native-vector-icons'
+import { produtos } from './produtos';
+import MaterialCommunityIcons from 'react-native-vector-icons/Feather';
 
 export default function Principal({navigation}) {
-
-  const { 
-    temaEscolhido 
-  } = useContext(TemaContext)
-  const estilo = estilos(temaEscolhido)
-
-  const { 
-    usuario 
-  } = useContext(AutenticacaoContext)
-
-  const { 
+  const {
     quantidade,
-    ultimosVistos 
-  } = useContext(ProdutosContext)
+    ultimosVistos,
+  } = useContext(ProdutosContext);
+
+  const {
+    temas,
+  } = useContext(TemaContext);
+
+  const {
+    usuario
+  } = useContext(AutenticacaoContext);
+
+  const estilo = estilos(temas);
 
   return (
     <View style={estilo.container}>
@@ -35,7 +34,8 @@ export default function Principal({navigation}) {
           <TouchableOpacity onPress={() => navigation.navigate('Resumo')}>
             <Feather name="shopping-cart" size={30} color="#fff" style={estilo.carrinhoIcon} />
           </TouchableOpacity>
-          { quantidade > 0 && <View style={estilo.carrinhoQuantidadeArea}>
+          {quantidade > 0 &&
+          <View style={estilo.carrinhoQuantidadeArea}>
             <Text style={estilo.carrinhoQuantidade}>{quantidade}</Text>  
           </View>}
           <TouchableOpacity onPress={() => navigation.navigate('Configurações')} style={estilo.iconArea} >
@@ -47,7 +47,7 @@ export default function Principal({navigation}) {
       <FlatList
         data={produtos}
         keyExtractor={item => Math.random()}
-        renderItem={({ item }) => <Produto item={item} adicionar={true} />}
+        renderItem={({ item }) => <Produto item={item} visualizado={true}/>}
         style={estilo.lista}
         showsVerticalScrollIndicator={false}
         ListHeaderComponent={() =>
@@ -58,7 +58,7 @@ export default function Principal({navigation}) {
                 <FlatList
                   data={ultimosVistos}
                   keyExtractor={item => Math.random()}
-                  renderItem={({ item }) => <Produto item={item} adicionar={false} />}
+                  renderItem={({ item }) => <Produto item={item} visualizado={false} />}
                   style={estilo.lista}
                   horizontal
                   showsHorizontalScrollIndicator={false}
@@ -71,3 +71,4 @@ export default function Principal({navigation}) {
     </View>
   );
 }
+

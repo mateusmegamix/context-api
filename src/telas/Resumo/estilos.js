@@ -1,9 +1,8 @@
 import { StyleSheet } from 'react-native';
 import Constants from 'expo-constants';
-import { tema } from '../../estilosGlobais';
 
 export const estilos = (tema) => {
-  return StyleSheet.create({
+ return StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: tema.fundo,
@@ -62,26 +61,18 @@ export const estilos = (tema) => {
     fontWeight: 'bold',
     color: "#fff",
   },
-  iconArea: {
-    marginLeft: 16,
-  },
-  icon: {
-    color: tema.texto,
-    fontSize: 30,
-  },
   botao: {
     margin: 16,
-    backgroundColor: tema.botao,
     marginBottom: 32,
     paddingVertical: 16,
     borderRadius: 10,
-    alignItems: 'center'
+    backgroundColor: tema.botao,
   },
   botaoTexto: {
     fontSize: 18,
     fontWeight: 'bold',
     color: tema.preto,
-    textAlign: 'center'
-  }
-});
+    textAlign: 'center',
+  },
+})
 }

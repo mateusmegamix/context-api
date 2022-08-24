@@ -1,9 +1,8 @@
 import { StyleSheet } from 'react-native';
 import Constants from 'expo-constants';
-import { tema } from '../../estilosGlobais';
 
 export const estilos = (tema) => {
-  return StyleSheet.create({
+ return StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: tema.fundo,
@@ -69,5 +68,5 @@ export const estilos = (tema) => {
     color: tema.texto,
     fontSize: 30,
   },
-});
+})
 }
