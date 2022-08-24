@@ -10,9 +10,9 @@ export function AutenticacaoProvider( {children} ) {
       senha == 123
     ){
       setUsuario({
-        nome: 'Mateus',
+        nome: 'Mateus Megamix',
         email: email,
-        endereco: 'Rua Santo Antonio 626',
+        endereco: 'Rua Santo Antonio, 626',
         telefone: '(24) 9 9999-9999'
       })
       return 'ok'
